@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>เกมทายรหัส 3 หลัก</title>
+
+<style>
+body{
+    font-family:Arial,sans-serif;
+    text-align:center;
+    background:#1e1e2f;
+    color:white;
+    padding:20px;
+}
+input,button{
+    font-size:22px;
+    padding:10px;
+    margin:10px;
+    border-radius:10px;
+    border:none;
+}
+button{
+    background:#4CAF50;
+    color:white;
+    cursor:pointer;
+}
+#guessArea{
+    display:none;
+}
+</style>
+</head>
+<body>
+
+<h1>🔒 เกมทายรหัส 3 หลัก</h1>
+
+<div id="setup">
+    <h2>ผู้ตั้งรหัส</h2>
+
+    <input id="code" type="password" maxlength="3" placeholder="รหัส 3 หลัก">
+
+    <br>
+
+    <button onclick="startGame()">เริ่มเกม</button>
+</div>
+
+<div id="guessArea">
+    <h2>🎯 ทายรหัส</h2>
+
+    <input id="guess" maxlength="3" placeholder="ใส่รหัส">
+
+    <br>
+
+    <button onclick="check()">ยืนยัน</button>
+
+    <h2 id="result"></h2>
+</div>
+
+<script>
+
+let secret="";
+
+function startGame(){
+
+    secret=document.getElementById("code").value;
+
+    if(!/^[0-9]{3}$/.test(secret)){
+        alert("กรุณาใส่รหัสตัวเลข 3 หลัก");
+        return;
+    }
+
+    document.getElementById("setup").style.display="none";
+    document.getElementById("guessArea").style.display="block";
+}
+
+function check(){
+
+    let g=document.getElementById("guess").value;
+
+    if(g===secret){
+        document.getElementById("result").innerHTML="🎉 ถูกต้อง! คุณชนะ";
+    }else{
+        document.getElementById("result").innerHTML="❌ ยังไม่ถูก ลองใหม่";
+    }
+
+}
+
+</script>
+
+</body>
+</html>
